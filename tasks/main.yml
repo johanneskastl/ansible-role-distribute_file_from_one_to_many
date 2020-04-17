@@ -1,0 +1,46 @@
+---
+# distribute_file_from_one_to_many/tasks/main.yml
+
+- name: 'Block to have error handling'
+  block:
+
+  #
+  # This tasks runs on localhost
+  #
+  - name: "Fetch file {{ path_to_source_file }} to ansible controller node"
+    fetch:
+      src: "{{ path_to_source_file }}"
+      dest: "{{ path_to_file_on_localhost }}"
+      flat: 'yes'
+    changed_when: 'false'
+    check_mode: 'false'
+    run_once: 'true'
+    when: 'inventory_hostname == host_to_fetch_file_from'
+
+  #
+  # This runs on all hosts as defined in your playbook
+  #
+  - name: 'Copy file to remote servers'
+    copy:
+      src: "{{ path_to_file_on_localhost }}"
+      dest: "{{ path_to_file_on_target }}"
+      owner: 'root'
+      group: 'root'
+      mode: '0644'
+    when: 'inventory_hostname != host_to_fetch_file_from'
+
+  # error handling: always remove the local file
+  always:
+    #
+    # This tasks runs on localhost
+    #
+    - name: "Delete file on ansible controller node"
+      file:
+        path: "{{ path_to_file_on_localhost }}"
+        state: 'absent'
+      changed_when: 'false'
+      check_mode: 'false'
+      become: 'false'
+      delegate_to: 'localhost'
+      run_once: 'true'
+      when: 'inventory_hostname == host_to_fetch_file_from'
