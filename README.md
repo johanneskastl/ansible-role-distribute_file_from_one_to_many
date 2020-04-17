@@ -31,9 +31,16 @@ None
 Example Playbook
 ----------------
 
-    - hosts: servers
+    - hosts:
+       - server01
+       - webservers
       roles:
-         - { role: 'johanneskastl.distribute_file_from_one_to_many' }
+         - role: 'johanneskastl.distribute_file_from_one_to_many'
+           vars:
+             host_to_fetch_file_from: 'server01'
+             path_to_source_file: '/etc/file_to_fetch.txt'
+             path_to_file_on_localhost: '/tmp/ansible-server01-file_to_fetch.txt'
+             path_to_file_on_target: '/etc/file_goes_here.txt'
 
 License
 -------
