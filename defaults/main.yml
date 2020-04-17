@@ -1,0 +1,6 @@
+---
+# distribute_file_from_one_to_many/defaults/main.yml
+
+file_owner_on_target: 'root'
+file_group_on_target: 'root'
+file_mode_on_target: '0644'

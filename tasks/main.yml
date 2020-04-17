@@ -24,9 +24,9 @@
     copy:
       src: "{{ path_to_file_on_localhost }}"
       dest: "{{ path_to_file_on_target }}"
-      owner: 'root'
-      group: 'root'
-      mode: '0644'
+      owner: "{{ file_owner_on_target }}"
+      group:  "{{ file_group_on_target }}"
+      mode:  "{{ file_mode_on_target }}"
     when: 'inventory_hostname != host_to_fetch_file_from'
 
   # error handling: always remove the local file
