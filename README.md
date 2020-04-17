@@ -3,12 +3,14 @@
 distribute_file_from_one_to_many
 =========
 
-Fetch a file from one host and distribute it to many other hosts
+Fetch a file from one host and distribute it to many other hosts.
+
+Can be used to distribute a ca.crt file from a newly setup server to all clients. Or something in this manner...
 
 Requirements
 ------------
 
-None.
+Make sure you add the source host to the playbook's target host list.
 
 Role Variables
 --------------
