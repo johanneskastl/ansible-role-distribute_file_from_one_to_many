@@ -1,5 +1,6 @@
 galaxy_info:
   role_name: 'distribute_file_from_one_to_many'
+  namespace: 'johanneskastl'
   author: 'Johannes Kastl'
   description: 'Fetch a file from one host and distribute it to many other hosts'
   company: 'B1 Systems GmbH'
