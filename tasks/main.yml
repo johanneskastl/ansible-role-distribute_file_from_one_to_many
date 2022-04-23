@@ -25,8 +25,8 @@
       src: "{{ path_to_file_on_localhost }}"
       dest: "{{ path_to_file_on_target }}"
       owner: "{{ file_owner_on_target }}"
-      group:  "{{ file_group_on_target }}"
-      mode:  "{{ file_mode_on_target }}"
+      group: "{{ file_group_on_target }}"
+      mode: "{{ file_mode_on_target }}"
     when: 'inventory_hostname != host_to_fetch_file_from'
 
   # error handling: always remove the local file
