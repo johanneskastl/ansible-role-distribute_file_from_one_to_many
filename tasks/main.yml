@@ -2,13 +2,13 @@
 # distribute_file_from_one_to_many/tasks/main.yml
 
 - name: 'Block to have error handling'
-  block:
+  ansible.builtin.block:
 
   #
   # This tasks runs on localhost
   #
   - name: "Fetch file {{ path_to_source_file }} to ansible controller node"
-    fetch:
+    ansible.builtin.fetch:
       src: "{{ path_to_source_file }}"
       dest: "{{ path_to_file_on_localhost }}"
       flat: 'yes'
@@ -21,7 +21,7 @@
   # This runs on all hosts as defined in your playbook
   #
   - name: 'Copy file to remote servers'
-    copy:
+    ansible.builtin.copy:
       src: "{{ path_to_file_on_localhost }}"
       dest: "{{ path_to_file_on_target }}"
       owner: "{{ file_owner_on_target }}"
@@ -35,7 +35,7 @@
     # This tasks runs on localhost
     #
     - name: "Delete file on ansible controller node"
-      file:
+      ansible.builtin.file:
         path: "{{ path_to_file_on_localhost }}"
         state: 'absent'
       changed_when: 'false'
