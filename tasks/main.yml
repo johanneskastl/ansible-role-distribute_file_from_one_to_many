@@ -34,13 +34,13 @@
   #
   # This tasks runs on localhost
   #
-  - name: "Delete file on ansible controller node"
-    ansible.builtin.file:
-      path: "{{ path_to_file_on_localhost }}"
-      state: 'absent'
-    changed_when: 'false'
-    check_mode: 'false'
-    become: 'false'
-    delegate_to: 'localhost'
-    run_once: 'true'
-    when: 'inventory_hostname == host_to_fetch_file_from'
+    - name: "Delete file on ansible controller node"
+      ansible.builtin.file:
+        path: "{{ path_to_file_on_localhost }}"
+        state: 'absent'
+      changed_when: 'false'
+      check_mode: 'false'
+      become: 'false'
+      delegate_to: 'localhost'
+      run_once: 'true'
+      when: 'inventory_hostname == host_to_fetch_file_from'
